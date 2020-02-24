@@ -10,12 +10,12 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.backends.android.AppActivity;
 
 import me.lancer.spineruntimesdemo.R;
-import me.lancer.spineruntimesdemo.model.DragonYouth;
+import me.lancer.spineruntimesdemo.model.Raptor;
 
-public class DragonYouthActivity extends AppActivity {
+public class RaptorActivity extends AppActivity {
 
-    DragonYouth dragon;
-    View dragonView;
+    Raptor raptor;
+    View raptorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +24,20 @@ public class DragonYouthActivity extends AppActivity {
 
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.r = cfg.g = cfg.b = cfg.a = 8;
-        dragon = new DragonYouth();
-        dragonView = initializeForView(dragon, cfg);
-        if (dragonView instanceof SurfaceView) {
-            SurfaceView glView = (SurfaceView) dragonView;
+        raptor = new Raptor();
+        raptorView = initializeForView(raptor, cfg);
+        if (raptorView instanceof SurfaceView) {
+            SurfaceView glView = (SurfaceView) raptorView;
             glView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
             glView.setZOrderOnTop(true);
         }
         LinearLayout root = (LinearLayout) findViewById(R.id.content);
-        root.addView(dragonView);
+        root.addView(raptorView);
     }
 
     @Override
     protected void onDestroy() {
-        dragon.dispose();
+        raptor.dispose();
         super.onDestroy();
     }
 }

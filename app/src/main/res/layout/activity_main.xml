@@ -32,57 +32,21 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn_human_oid"
+            android:id="@+id/btn_raptor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@android:color/holo_blue_light"
-            android:text="HumanOid(Attachment)"
+            android:text="Raptor"
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn_speedy"
+            android:id="@+id/btn_mix_and_match"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@android:color/holo_blue_light"
-            android:text="Speedy"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btn_alien"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@android:color/holo_blue_light"
-            android:text="Alien"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btn_bone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@android:color/holo_blue_light"
-            android:text="Bone"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btn_power_up"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@android:color/holo_blue_light"
-            android:text="PowerUp"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btn_dragon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@android:color/holo_blue_light"
-            android:text="Dragon"
+            android:text="MixAndMatch"
             android:textColor="@android:color/white" />
 
         <Button

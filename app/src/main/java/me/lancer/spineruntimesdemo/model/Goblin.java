@@ -4,7 +4,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
@@ -13,13 +12,12 @@ import com.esotericsoftware.spine.SkeletonData;
 import com.esotericsoftware.spine.SkeletonJson;
 import com.esotericsoftware.spine.SkeletonRenderer;
 import com.esotericsoftware.spine.SkeletonRendererDebug;
-
-import me.lancer.spineruntimesdemo.util.DensityUtil;
+import com.esotericsoftware.spine.utils.TwoColorPolygonBatch;
 
 public class Goblin extends ApplicationAdapter {
 
     OrthographicCamera camera;
-    SpriteBatch batch;
+    TwoColorPolygonBatch batch;
     SkeletonRenderer renderer;
     SkeletonRendererDebug debugRenderer;
     TextureAtlas atlas;
@@ -29,16 +27,16 @@ public class Goblin extends ApplicationAdapter {
 
     public void create() {
         camera = new OrthographicCamera();
-        batch = new SpriteBatch();
+        batch = new TwoColorPolygonBatch();
         renderer = new SkeletonRenderer();
         renderer.setPremultipliedAlpha(false); // PMA results in correct blending without outlines.
         debugRenderer = new SkeletonRendererDebug();
         debugRenderer.setBoundingBoxes(false);
         debugRenderer.setRegionAttachments(false);
-        atlas = new TextureAtlas(Gdx.files.internal("goblins/goblins.atlas"));
+        atlas = new TextureAtlas(Gdx.files.internal("goblins/goblins-pma.atlas"));
         json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
         json.setScale(1.1f); // Load the skeleton at 60% the size it was in Spine.
-        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("goblins/goblins.json"));
+        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("goblins/goblins-pro.json"));
 
         skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
         skeleton.setSkin("goblin");
@@ -57,6 +55,7 @@ public class Goblin extends ApplicationAdapter {
     }
 
     public void render() {
+        state.clearListeners();
         state.update(Gdx.graphics.getDeltaTime()); // Update the animation time.
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

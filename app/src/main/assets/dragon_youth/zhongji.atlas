@@ -1,75 +1,69 @@
 
 zhongji.png
-size: 1024,1024
+size: 2048,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+arm01
+  rotate: false
+  xy: 646, 152
+  size: 167, 315
+  orig: 167, 315
+  offset: 0, 0
+  index: -1
 arm02
-  rotate: true
-  xy: 2, 2
+  rotate: false
+  xy: 815, 204
   size: 139, 263
   orig: 139, 263
   offset: 0, 0
   index: -1
 body01
   rotate: false
-  xy: 2, 645
+  xy: 1134, 602
   size: 646, 367
   orig: 646, 367
   offset: 0, 0
   index: -1
+head
+  rotate: false
+  xy: 2, 439
+  size: 559, 530
+  orig: 559, 530
+  offset: 0, 0
+  index: -1
 leg01
-  rotate: true
-  xy: 573, 124
+  rotate: false
+  xy: 2, 2
   size: 294, 435
   orig: 294, 435
   offset: 0, 0
   index: -1
 leg02
   rotate: true
-  xy: 267, 7
+  xy: 1134, 485
   size: 115, 174
   orig: 115, 174
   offset: 0, 0
   index: -1
 tail01
-  rotate: true
-  xy: 650, 420
+  rotate: false
+  xy: 1782, 609
   size: 244, 360
   orig: 244, 360
   offset: 0, 0
   index: -1
 win01
   rotate: false
-  xy: 2, 143
+  xy: 563, 469
   size: 569, 500
   orig: 569, 500
   offset: 0, 0
   index: -1
 win02
-  rotate: true
-  xy: 650, 666
+  rotate: false
+  xy: 298, 70
   size: 346, 367
   orig: 346, 367
-  offset: 0, 0
-  index: -1
-
-zhongji2.png
-size: 1024,1024
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-arm01
-  rotate: false
-  xy: 2, 2
-  size: 167, 315
-  orig: 167, 315
-  offset: 0, 0
-  index: -1
-head
-  rotate: false
-  xy: 2, 319
-  size: 559, 530
-  orig: 559, 530
   offset: 0, 0
   index: -1

@@ -11,53 +11,53 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.backends.android.AppActivity;
 
 import me.lancer.spineruntimesdemo.R;
-import me.lancer.spineruntimesdemo.model.Goblin;
+import me.lancer.spineruntimesdemo.model.MixAndMatch;
 
-public class GoblinActivity extends AppActivity {
+public class MixAndMatchActivity extends AppActivity {
 
-    Goblin goblin;
-    View goblinView;
+    MixAndMatch mixAndMatch;
+    View mixAndMatchView;
 
-    Button btnMan, btnWoman;
+    Button btnGirl, btnBoy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goblin);
+        setContentView(R.layout.activity_mix_and_match);
 
-        btnMan = (Button) findViewById(R.id.btn_man);
-        btnMan.setOnClickListener(vOnClickListener);
+        btnGirl = (Button) findViewById(R.id.btn_girl);
+        btnGirl.setOnClickListener(vOnClickListener);
 
-        btnWoman = (Button) findViewById(R.id.btn_woman);
-        btnWoman.setOnClickListener(vOnClickListener);
+        btnBoy = (Button) findViewById(R.id.btn_boy);
+        btnBoy.setOnClickListener(vOnClickListener);
 
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.r = cfg.g = cfg.b = cfg.a = 8;
-        goblin = new Goblin();
-        goblinView = initializeForView(goblin, cfg);
-        if (goblinView instanceof SurfaceView) {
-            SurfaceView glView = (SurfaceView) goblinView;
+        mixAndMatch = new MixAndMatch();
+        mixAndMatchView = initializeForView(mixAndMatch, cfg);
+        if (mixAndMatchView instanceof SurfaceView) {
+            SurfaceView glView = (SurfaceView) mixAndMatchView;
             glView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
             glView.setZOrderOnTop(true);
         }
         LinearLayout root = (LinearLayout) findViewById(R.id.content);
-        root.addView(goblinView);
+        root.addView(mixAndMatchView);
     }
 
     View.OnClickListener vOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (view == btnMan) {
-                goblin.setSkin("goblin");
-            } else if (view == btnWoman) {
-                goblin.setSkin("goblingirl");
+            if (view == btnGirl) {
+                mixAndMatch.setSkin("full-skins/girl");
+            } else if (view == btnBoy) {
+                mixAndMatch.setSkin("full-skins/boy");
             }
         }
     };
 
     @Override
     protected void onDestroy() {
-        goblin.dispose();
+        mixAndMatch.dispose();
         super.onDestroy();
     }
 }

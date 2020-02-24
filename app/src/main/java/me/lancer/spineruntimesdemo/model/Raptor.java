@@ -4,7 +4,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
@@ -13,11 +12,12 @@ import com.esotericsoftware.spine.SkeletonData;
 import com.esotericsoftware.spine.SkeletonJson;
 import com.esotericsoftware.spine.SkeletonRenderer;
 import com.esotericsoftware.spine.SkeletonRendererDebug;
+import com.esotericsoftware.spine.utils.TwoColorPolygonBatch;
 
-public class SpineBoy extends ApplicationAdapter {
+public class Raptor extends ApplicationAdapter {
 
     OrthographicCamera camera;
-    PolygonSpriteBatch batch;
+    TwoColorPolygonBatch batch;
     SkeletonRenderer renderer;
     SkeletonRendererDebug debugRenderer;
     TextureAtlas atlas;
@@ -27,31 +27,33 @@ public class SpineBoy extends ApplicationAdapter {
 
     public void create() {
         camera = new OrthographicCamera();
-        batch = new PolygonSpriteBatch();
+        batch = new TwoColorPolygonBatch();
         renderer = new SkeletonRenderer();
-        renderer.setPremultipliedAlpha(true); // PMA results in correct blending without outlines.
+        renderer.setPremultipliedAlpha(false); // PMA results in correct blending without outlines.
         debugRenderer = new SkeletonRendererDebug();
         debugRenderer.setBoundingBoxes(false);
         debugRenderer.setRegionAttachments(false);
-        atlas = new TextureAtlas(Gdx.files.internal("spineboy/spineboy-pma.atlas"));
+        atlas = new TextureAtlas(Gdx.files.internal("raptor/raptor-pma.atlas"));
         json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
         json.setScale(0.5f); // Load the skeleton at 60% the size it was in Spine.
-        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("spineboy/spineboy-pro.json"));
+        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("raptor/raptor-pro.json"));
 
         skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
-        skeleton.setPosition(300, 0);
+        skeleton.setPosition(450, 100);
 
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-        stateData.setMix("run", "jump", 0.2f);
-        stateData.setMix("jump", "run", 0.2f);
+        stateData.setMix("gun-grab", "walk", 0.2f);
+        stateData.setMix("walk", "gun-grab", 0.2f);
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
         state.setTimeScale(1.0f); // Slow all animations down to 50% speed.
 
         // Queue animations on track 0.
-        state.setAnimation(0, "run", true);
+        state.setAnimation(0, "gun-grab", true);
 
-        state.addAnimation(0, "run", true, 0); // Run after the jump.
+        state.addAnimation(0, "walk", true, 0); // Run after the jump.
+
+        state.addAnimation(0, "roar", true, 5); // Run after the jump.
     }
 
     public void render() {
@@ -85,8 +87,8 @@ public class SpineBoy extends ApplicationAdapter {
     }
 
     public void setAnimate() {
-        setAnimate("jump");
-        setAnimate("run"); // Run after the jump.
+        setAnimate("walk");
+        setAnimate("roar");
     }
 
     public void setAnimate(String animate) {

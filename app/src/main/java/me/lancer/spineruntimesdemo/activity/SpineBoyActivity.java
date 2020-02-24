@@ -1,15 +1,11 @@
 package me.lancer.spineruntimesdemo.activity;
 
-import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.backends.android.AppActivity;
@@ -22,7 +18,7 @@ public class SpineBoyActivity extends AppActivity {
     SpineBoy spineBoy;
     View spineBoyView;
 
-    Button btnWalk, btnRun, btnJump, btnIdle, btnShoot, btnHit, btnDeath;
+    Button btnWalk, btnRun, btnJump, btnIdle, btnShoot, btnDeath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +40,6 @@ public class SpineBoyActivity extends AppActivity {
         btnShoot = (Button) findViewById(R.id.btn_shoot);
         btnShoot.setOnClickListener(vOnClickListener);
 
-        btnHit = (Button) findViewById(R.id.btn_hit);
-        btnHit.setOnClickListener(vOnClickListener);
-
         btnDeath = (Button) findViewById(R.id.btn_death);
         btnDeath.setOnClickListener(vOnClickListener);
 
@@ -61,48 +54,6 @@ public class SpineBoyActivity extends AppActivity {
         }
         FrameLayout root = (FrameLayout) findViewById(R.id.animate_content);
         root.addView(spineBoyView);
-//        addSpineBoy();
-    }
-
-    public void addSpineBoy() {
-        final WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        final WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-
-        spineBoyView.setOnTouchListener(new View.OnTouchListener() {
-
-            float lastX, lastY;
-
-            public boolean onTouch(View v, MotionEvent event) {
-                final int action = event.getAction();
-                float x = event.getRawX();
-                float y = event.getRawY();
-                if (action == MotionEvent.ACTION_DOWN) {
-                    lastX = x;
-                    lastY = y;
-                } else if (action == MotionEvent.ACTION_MOVE) {
-                    layoutParams.x += (int) (x - lastX);
-                    layoutParams.y += (int) (y - lastY);
-                    windowManager.updateViewLayout(spineBoyView, layoutParams);
-                    lastX = x;
-                    lastY = y;
-                } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
-                    spineBoy.setAnimate();
-                }
-                return true;
-            }
-        });
-        layoutParams.type = WindowManager.LayoutParams.TYPE_TOAST;
-        layoutParams.flags = 40;
-        layoutParams.width = dp2Px(144);
-        layoutParams.height = dp2Px(200);
-        layoutParams.format = -3;
-        windowManager.addView(spineBoyView, layoutParams);
-    }
-
-    public int dp2Px(float value) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (value * scale + 0.5f);
     }
 
     View.OnClickListener vOnClickListener = new View.OnClickListener() {
@@ -118,8 +69,6 @@ public class SpineBoyActivity extends AppActivity {
                 spineBoy.setAnimate("idle");
             } else if (view == btnShoot) {
                 spineBoy.setAnimate("shoot");
-            } else if (view == btnHit) {
-                spineBoy.setAnimate("hit");
             } else if (view == btnDeath) {
                 spineBoy.setAnimate("death");
             }
@@ -128,7 +77,7 @@ public class SpineBoyActivity extends AppActivity {
 
     @Override
     protected void onDestroy() {
-//        getWindowManager().removeView(spineBoyView);
+        spineBoy.dispose();
         super.onDestroy();
     }
 }

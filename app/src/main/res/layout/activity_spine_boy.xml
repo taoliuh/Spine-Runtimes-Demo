@@ -59,15 +59,6 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn_hit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@android:color/holo_green_light"
-            android:text="Hit"
-            android:textColor="@android:color/white" />
-
-        <Button
             android:id="@+id/btn_death"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

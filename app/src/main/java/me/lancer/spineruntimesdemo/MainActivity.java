@@ -6,19 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import me.lancer.spineruntimesdemo.activity.AlienActivity;
-import me.lancer.spineruntimesdemo.activity.BoneActivity;
-import me.lancer.spineruntimesdemo.activity.DragonActivity;
+import me.lancer.spineruntimesdemo.activity.MixAndMatchActivity;
 import me.lancer.spineruntimesdemo.activity.DragonYouthActivity;
 import me.lancer.spineruntimesdemo.activity.GoblinActivity;
-import me.lancer.spineruntimesdemo.activity.HumanOidActivity;
-import me.lancer.spineruntimesdemo.activity.PowerUpActivity;
-import me.lancer.spineruntimesdemo.activity.SpeedyActivity;
+import me.lancer.spineruntimesdemo.activity.RaptorActivity;
 import me.lancer.spineruntimesdemo.activity.SpineBoyActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSpineBoy, btnGoblin, btnHumanOid, btnSpeedy, btnAlien, btnBone, btnPowerUp, btnDragon, btnDragonYouth;
+    Button btnSpineBoy, btnGoblin, btnRaptor, btnMixAndMatch, btnDragonYouth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +27,11 @@ public class MainActivity extends AppCompatActivity {
         btnGoblin = (Button) findViewById(R.id.btn_goblin);
         btnGoblin.setOnClickListener(vOnClickListener);
 
-        btnHumanOid = (Button) findViewById(R.id.btn_human_oid);
-        btnHumanOid.setOnClickListener(vOnClickListener);
+        btnRaptor = (Button) findViewById(R.id.btn_raptor);
+        btnRaptor.setOnClickListener(vOnClickListener);
 
-        btnSpeedy = (Button) findViewById(R.id.btn_speedy);
-        btnSpeedy.setOnClickListener(vOnClickListener);
-
-        btnAlien = (Button) findViewById(R.id.btn_alien);
-        btnAlien.setOnClickListener(vOnClickListener);
-
-        btnBone = (Button) findViewById(R.id.btn_bone);
-        btnBone.setOnClickListener(vOnClickListener);
-
-        btnPowerUp = (Button) findViewById(R.id.btn_power_up);
-        btnPowerUp.setOnClickListener(vOnClickListener);
-
-        btnDragon = (Button) findViewById(R.id.btn_dragon);
-        btnDragon.setOnClickListener(vOnClickListener);
+        btnMixAndMatch = (Button) findViewById(R.id.btn_mix_and_match);
+        btnMixAndMatch.setOnClickListener(vOnClickListener);
 
         btnDragonYouth = (Button) findViewById(R.id.btn_dragon_youth);
         btnDragonYouth.setOnClickListener(vOnClickListener);
@@ -64,29 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, GoblinActivity.class);
                 startActivity(intent);
-            } else if (view == btnHumanOid) {
+            } else if (view == btnRaptor) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, HumanOidActivity.class);
+                intent.setClass(MainActivity.this, RaptorActivity.class);
                 startActivity(intent);
-            } else if (view == btnSpeedy) {
+            } else if (view == btnMixAndMatch) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, SpeedyActivity.class);
-                startActivity(intent);
-            } else if (view == btnAlien) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, AlienActivity.class);
-                startActivity(intent);
-            } else if (view == btnBone) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, BoneActivity.class);
-                startActivity(intent);
-            } else if (view == btnPowerUp) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, PowerUpActivity.class);
-                startActivity(intent);
-            } else if (view == btnDragon) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, DragonActivity.class);
+                intent.setClass(MainActivity.this, MixAndMatchActivity.class);
                 startActivity(intent);
             } else if (view == btnDragonYouth) {
                 Intent intent = new Intent();
